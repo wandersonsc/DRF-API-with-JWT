@@ -25,6 +25,10 @@ SECRET_KEY = 'lme$d@j_ncn!5kscs3i847_87j39arooivoy#s6w3=rutbw=9l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+""" Custon User Model Settings """
+AUTH_USER_MODEL = 'account.UserProfile'
+
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #locals
+    'account',
+
+    #Thrid-party
+    'rest_framework',
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
@@ -118,3 +129,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+""" Rest Framework Settings"""
+REST_FRAMEWORK = {
+    
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+
+}
